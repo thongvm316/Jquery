@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    <title>jQuery</title>
+
+    <style>
+      body {
+        font-size: 17px;
+        font-family: tahoma;
+        background: #f4f4f4;
+        line-height: 1.5em;
+      }
+
+      header {
+        background: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+        border-bottom: 4px #fff solid;
+      }
+      #container {
+        width: 90%;
+        margin: auto;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>jQuery Crash Course</h1>
+    </header>
+
+    <div class="container">
+      <div id="result">
+        
+      </div>
+      <ul id="user"></ul>
+
+      <form id="postForm" action="https://jsonplaceholder.typicode.com/posts" method="">
+        <input type="text" id="title" placeholder="Title"> <br>
+        <textarea placeholder="Body" name="" id="body" cols="30" rows="10"></textarea> <br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    
+   
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./js/jquery-3.5.1.min.js"></script>
+    <script>
+    
+      $(document).ready(function () {
+        /* -----------Load--------- */
+        // $('#result').load('test1.html', (responseTxt, statusTxt, xhr) => {
+        //   if (statusTxt === "success") {
+        //     alert('It went fine')
+        //   } else if (statusTxt === 'error') {
+        //     alert(`Error: ${xhr.statusText}`)
+        //   }
+        // });
+
+        /* ------------Get---------- */
+          // $.get("test.html", function (data) {
+          //   $('#result').html(data);
+          // });
+
+          // Get Json
+          // $.getJSON("user.json", function (data) { 
+          //   $.each(data, function (i, user) { 
+          //      $('#user').append(
+          //        `<li>${user.first_name}</li>`
+          //      );
+          //   });
+          // });
+
+          // $.ajax({
+          //   method: "GET",
+          //   url: "https://jsonplaceholder.typicode.com/posts",
+          //   dataType: "json",
+          //   success: function (data) {
+          //     console.log(data)
+          //     $.map(data, function (post, i) {
+          //       $('#result').append(
+          //         `<h3>${post.title}</h3> <p>${post.body}</p>`
+          //       );
+          //     });
+          //   }
+          // });
+
+          $('#postForm').submit(function (e) { 
+            e.preventDefault();
+            var title = $('#title').val()
+            var body = $('#body').val()
+            var url = $(this).attr('action')
+
+            $.post(url, {title:title, body:body}).done(function (data) { 
+              console.log('post saved')
+              console.log(data)
+             });
+          });
+
+
+
+
+
+
+
+      });
+    </script>
+  </body>
+</html>
